@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, Menu, X } from "lucide-react";
+import { getDashboardUrl } from "./Sections";
 
 const navLinks = [
   { name: "Problem", href: "#problem" },
@@ -44,10 +45,10 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#cta"
+            href={getDashboardUrl()}
             className="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-colors"
           >
-            Get Early Access
+            Open Dashboard
           </a>
         </div>
 
@@ -81,11 +82,11 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#cta"
+                href={getDashboardUrl()}
                 className="px-5 py-2.5 rounded-full bg-indigo-600 text-white text-sm font-medium text-center"
                 onClick={() => setMobileOpen(false)}
               >
-                Get Early Access
+                Open Dashboard
               </a>
             </div>
           </motion.div>

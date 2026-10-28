@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getDashboardUrl } from "./Sections";
 import {
   ShieldAlert,
   ShieldCheck,
@@ -371,6 +372,12 @@ export default function InteractiveDemo() {
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
               Grounded Citation Validator: Active
             </span>
+            <a
+              href={getDashboardUrl()}
+              className="ml-2 px-3 py-1 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/30 text-xs font-medium transition-colors flex items-center gap-1"
+            >
+              Open Live Dashboard ↗
+            </a>
           </div>
         </div>
 

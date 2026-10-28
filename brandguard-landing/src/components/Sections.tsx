@@ -78,6 +78,14 @@ function useCountUp(target: number, duration = 2000, startOnView = true) {
   return { count, ref };
 }
 
+export const getDashboardUrl = () => {
+  if (process.env.NEXT_PUBLIC_DASHBOARD_URL) return process.env.NEXT_PUBLIC_DASHBOARD_URL;
+  if (typeof window !== "undefined") {
+    return `${window.location.protocol}//${window.location.hostname}:4000/#/dashboard`;
+  }
+  return "http://localhost:4000/#/dashboard";
+};
+
 /* ═══════════════════════════════════════
    HERO CONTENT
    ═══════════════════════════════════════ */
@@ -128,7 +136,7 @@ export function HeroContent() {
         className="flex flex-col sm:flex-row items-center justify-center gap-4"
       >
         <a
-          href="#interactive-demo"
+          href={getDashboardUrl()}
           className="w-full sm:w-auto px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-base transition-all hover:shadow-lg hover:shadow-indigo-500/30 flex items-center justify-center gap-2"
         >
           Try Interactive Demo
