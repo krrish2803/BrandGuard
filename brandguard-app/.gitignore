@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Env — real keys live here and must never be committed
+.env
+.env.local
+.env.*.local
+
+# Logs & OS
+*.log
+.DS_Store
+
+# Test / coverage
+coverage/
