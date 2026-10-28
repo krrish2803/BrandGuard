@@ -33,7 +33,7 @@ export async function switchRole(role, name) {
   return session;
 }
 
-const REQUEST_TIMEOUT_MS = 15000;
+const REQUEST_TIMEOUT_MS = 60000;
 
 async function call(method, path, body, { timeoutMs = REQUEST_TIMEOUT_MS } = {}) {
   const session = getSession();

@@ -22,11 +22,13 @@ import {
 export default function Dashboard({ role, toast }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let alive = true;
     (async () => {
       try {
+        setError(null);
         const [contents, alerts, kb, insights, health, disclosure] = await Promise.all([
           api.contents(),
           api.alerts(),
@@ -44,9 +46,35 @@ export default function Dashboard({ role, toast }) {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [reloadKey]);
 
-  if (error) return <Empty icon="🔌" title="Could not reach the API" sub={error} />;
+  if (error) {
+    const isTimeout = error.includes("timed out") || error.includes("Could not reach");
+    return (
+      <Empty
+        icon="🔌"
+        title="Could not reach the API"
+        sub={
+          isTimeout
+            ? `${error}. (Free hosting instances may take up to 45s to wake up on the first request).`
+            : error
+        }
+        action={
+          <button
+            className="btn btn-primary"
+            style={{ marginTop: 12 }}
+            onClick={() => {
+              setData(null);
+              setError(null);
+              setReloadKey((k) => k + 1);
+            }}
+          >
+            Retry Connection ↻
+          </button>
+        }
+      />
+    );
+  }
   if (!data) return <Loading label="Loading dashboard…" />;
 
   const { contents, alerts, kb, insights, health, disclosure } = data;
