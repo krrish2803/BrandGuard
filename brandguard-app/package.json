@@ -5,6 +5,7 @@
   "type": "module",
   "description": "BrandGuard — pre-publication brand governance: citation-grounded review engine (F5), fact expiry & reverse alerts (F12), Express API + MongoDB.",
   "scripts": {
+    "build": "cd client && npm install && npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "demo": "node scripts/demo.js",
